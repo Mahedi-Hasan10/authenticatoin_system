@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block cssStyle %}
+.custom_css{
+    height: 100vh;
+    width: auto;
+}
+{% endblock cssStyle %}
+
+{% block content %}
+ <div class="custom_css bg-info">
+  {% if messages %}
+  {% for mess in messages %}
+  <strong>{{mess}}</strong>
+  {% endfor %}
+  {% endif %}
+  <h1 class="text-center py-4"> Welcome to homepage</h1>
+
+ </div>
+{% endblock content %}

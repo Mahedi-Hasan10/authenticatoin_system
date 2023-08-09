@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block cssStyle %}
+  
+{% endblock cssStyle %}
+
+
+{% block content %}
+<div class="bg-info text-white p-4">
+    {% if messages %}
+{% for mess in messages %}
+    <p class="bg-info p-2 text-white">{{mess}}</p>
+{% endfor %}
+{% endif %}
+<h1 class="py-3 text-center">Welcome to Profile page</h1>
+<br/>
+<p><a class="btn btn-danger" href="{% url 'change_pass' %}">Change Password</a></p>
+<p><a class="btn btn-warning" href="{% url 'change_pass2' %}">Change Password without old Password</a></p>
+Good Morning<strong class="text-danger"> {{user}}</strong>
+<br><br>
+
+{% load crispy_forms_tags %}
+  <br>
+<form method="POST" class="p-4 bg-primary text-white" >
+    <h3 class="text-center py-3 text-white fw-bolder">Change Data</h3>
+    <!-- {{form|crispy}} -->
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    {% for er in form.non_field_errors %}
+    <p class="text-center p-2 bg-danger text-white">{{er}}</p>
+    {% endfor %}
+    {% endif %}
+    {% for fm in form %}
+      {{fm.label_tag}}
+      {{fm}}
+      {{fm.errors}}
+    {% endfor %}
+    <button type="submit" class="btn btn-warning my-3">Login</button><br>
+    <small>Didn't have an account? <a class="text-white" href="{% url 'signup' %}">signup</a></small>
+</form>
+</div>
+{% endblock content %}

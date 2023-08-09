@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+  <br>
+<form method="POST" class="p-4 bg-primary text-white" >
+    <h3 class="text-center py-3 text-white fw-bolder">Change Password</h3>
+    <!-- {{form|crispy}} -->
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    {% for er in form.non_field_errors %}
+    <p class="text-center p-2 bg-danger text-white">{{er}}</p>
+    {% endfor %}
+    {% endif %}
+    {% for fm in form %}
+      {{fm.label_tag}}
+      {{fm}}
+      <p class="text-danger">{{fm.errors|striptags}}</p>
+    {% endfor %}
+    <button type="submit" class="btn btn-warning my-3">Submit</button><br>
+
+    <small>Didn't have an account? <a class="text-white" href="{% url 'signup' %}">signup</a></small>
+</form>
+
+
+
+
+{% endblock content %}

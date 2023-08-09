@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+  <br>
+<form method="POST" class="p-4 bg-primary text-white" novalidate >
+    <h3 class="text-center py-3 text-white fw-bolder">Registration Form</h3>
+    <!-- {{form|crispy}} -->
+    {% csrf_token %}
+    {% for fm in form %}
+      {{fm.label_tag}}
+      {{fm}}
+      {{fm.errors|striptags}}
+    {% endfor %}
+    <button type="submit" class="btn btn-warning my-3">Submit</button><br>
+    <small>Already have an account? <a href="{% url 'login' %}">login</a></small>
+</form>
+{% endblock content %}
